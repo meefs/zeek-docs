@@ -17,6 +17,12 @@ Runtime Options
 :zeek:id:`QUIC::max_history_length`: :zeek:type:`count` :zeek:attr:`&redef` The maximum length of the history field.
 =========================================================================== ========================================
 
+Redefinable Options
+###################
+================================================================================== ==============================================================
+:zeek:id:`QUIC::max_discarded_packet_events`: :zeek:type:`int` :zeek:attr:`&redef` Maximum number of QUIC::discarded packet() events to generate.
+================================================================================== ==============================================================
+
 Types
 #####
 ============================================ =
@@ -55,7 +61,7 @@ Detailed Interface
 Runtime Options
 ###############
 .. zeek:id:: QUIC::max_history_length
-   :source-code: base/protocols/quic/main.zeek 79 79
+   :source-code: base/protocols/quic/main.zeek 80 80
 
    :Type: :zeek:type:`count`
    :Attributes: :zeek:attr:`&redef`
@@ -63,10 +69,22 @@ Runtime Options
 
    The maximum length of the history field.
 
+Redefinable Options
+###################
+.. zeek:id:: QUIC::max_discarded_packet_events
+   :source-code: base/protocols/quic/main.zeek 84 84
+
+   :Type: :zeek:type:`int`
+   :Attributes: :zeek:attr:`&redef`
+   :Default: ``100``
+
+   Maximum number of QUIC::discarded packet() events to generate.
+   Set to 0 for unlimited, -1 for disabled.
+
 Types
 #####
 .. zeek:type:: QUIC::Info
-   :source-code: base/protocols/quic/main.zeek 13 70
+   :source-code: base/protocols/quic/main.zeek 13 71
 
    :Type: :zeek:type:`record`
 
@@ -141,6 +159,7 @@ Types
       C       CONNECTION_CLOSE packet
       S       SSL Client/Server Hello
       U       Unfamiliar QUIC version
+      X       Discarded packet after successful decryption of INITIAL packets.
       ======  ====================================================
 
 
@@ -154,7 +173,7 @@ Types
 Events
 ######
 .. zeek:id:: QUIC::log_quic
-   :source-code: base/protocols/quic/main.zeek 72 72
+   :source-code: base/protocols/quic/main.zeek 73 73
 
    :Type: :zeek:type:`event` (rec: :zeek:type:`QUIC::Info`)
 
@@ -162,13 +181,13 @@ Events
 Hooks
 #####
 .. zeek:id:: QUIC::finalize_quic
-   :source-code: base/protocols/quic/main.zeek 229 235
+   :source-code: base/protocols/quic/main.zeek 246 252
 
    :Type: :zeek:type:`Conn::RemovalHook`
 
 
 .. zeek:id:: QUIC::log_policy
-   :source-code: base/protocols/quic/main.zeek 74 74
+   :source-code: base/protocols/quic/main.zeek 75 75
 
    :Type: :zeek:type:`Log::PolicyHook`
 

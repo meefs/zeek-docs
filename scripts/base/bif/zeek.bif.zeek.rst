@@ -230,6 +230,10 @@ Functions
 :zeek:id:`sha256_hash_finish`: :zeek:type:`function`            Returns the final SHA256 digest of an incremental hash computation.
 :zeek:id:`sha256_hash_init`: :zeek:type:`function`              Constructs an SHA256 handle to enable incremental hash computation.
 :zeek:id:`sha256_hash_update`: :zeek:type:`function`            Updates the SHA256 value associated with a given index.
+:zeek:id:`sha512_hash`: :zeek:type:`function`                   Computes the SHA512 hash value of the provided list of arguments.
+:zeek:id:`sha512_hash_finish`: :zeek:type:`function`            Returns the final SHA512 digest of an incremental hash computation.
+:zeek:id:`sha512_hash_init`: :zeek:type:`function`              Constructs an SHA512 handle to enable incremental hash computation.
+:zeek:id:`sha512_hash_update`: :zeek:type:`function`            Updates the SHA512 value associated with a given index.
 :zeek:id:`skip_further_processing`: :zeek:type:`function`       Informs Zeek that it should skip any further processing of the contents of
                                                                 a given connection.
 :zeek:id:`sleep`: :zeek:type:`function`                         Sleeps for the given amount of time.
@@ -333,14 +337,14 @@ Functions
    .. zeek:see:: EventMetadata::current EventMetadata::current_all
 
 .. zeek:id:: __init_secondary_bifs
-   :source-code: base/bif/zeek.bif.zeek 2577 2577
+   :source-code: base/bif/zeek.bif.zeek 2656 2656
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
    An internal function that helps initialize BIFs.
 
 .. zeek:id:: active_file
-   :source-code: base/bif/zeek.bif.zeek 2257 2257
+   :source-code: base/bif/zeek.bif.zeek 2336 2336
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`) : :zeek:type:`bool`
 
@@ -355,7 +359,7 @@ Functions
    .. todo:: Rename to ``is_open``.
 
 .. zeek:id:: addr_to_counts
-   :source-code: base/bif/zeek.bif.zeek 1247 1247
+   :source-code: base/bif/zeek.bif.zeek 1326 1326
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`) : :zeek:type:`index_vec`
 
@@ -371,7 +375,7 @@ Functions
    .. zeek:see:: counts_to_addr
 
 .. zeek:id:: addr_to_ptr_name
-   :source-code: base/bif/zeek.bif.zeek 1589 1589
+   :source-code: base/bif/zeek.bif.zeek 1668 1668
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`) : :zeek:type:`string`
 
@@ -387,7 +391,7 @@ Functions
    .. zeek:see:: ptr_name_to_addr to_addr
 
 .. zeek:id:: addr_to_subnet
-   :source-code: base/bif/zeek.bif.zeek 1455 1455
+   :source-code: base/bif/zeek.bif.zeek 1534 1534
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`) : :zeek:type:`subnet`
 
@@ -402,7 +406,7 @@ Functions
    .. zeek:see:: to_subnet
 
 .. zeek:id:: all_set
-   :source-code: base/bif/zeek.bif.zeek 759 759
+   :source-code: base/bif/zeek.bif.zeek 838 838
 
    :Type: :zeek:type:`function` (v: :zeek:type:`any`) : :zeek:type:`bool`
 
@@ -422,7 +426,7 @@ Functions
         Missing elements count as false.
 
 .. zeek:id:: anonymize_addr
-   :source-code: base/bif/zeek.bif.zeek 2630 2630
+   :source-code: base/bif/zeek.bif.zeek 2709 2709
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`, cl: :zeek:type:`IPAddrAnonymizationClass`) : :zeek:type:`addr`
 
@@ -448,7 +452,7 @@ Functions
    .. todo:: Currently dysfunctional.
 
 .. zeek:id:: any_set
-   :source-code: base/bif/zeek.bif.zeek 744 744
+   :source-code: base/bif/zeek.bif.zeek 823 823
 
    :Type: :zeek:type:`function` (v: :zeek:type:`any`) : :zeek:type:`bool`
 
@@ -464,7 +468,7 @@ Functions
    .. zeek:see:: all_set
 
 .. zeek:id:: backtrace
-   :source-code: base/bif/zeek.bif.zeek 1220 1220
+   :source-code: base/bif/zeek.bif.zeek 1299 1299
 
    :Type: :zeek:type:`function` () : :zeek:type:`Backtrace`
 
@@ -476,7 +480,7 @@ Functions
             location information.
 
 .. zeek:id:: bare_mode
-   :source-code: base/bif/zeek.bif.zeek 997 997
+   :source-code: base/bif/zeek.bif.zeek 1076 1076
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -486,7 +490,7 @@ Functions
    :returns: True if Zeek was started in bare mode, false otherwise.
 
 .. zeek:id:: blocking_lookup_hostname
-   :source-code: base/bif/zeek.bif.zeek 1987 1987
+   :source-code: base/bif/zeek.bif.zeek 2066 2066
 
    :Type: :zeek:type:`function` (host: :zeek:type:`string`) : :zeek:type:`addr_set`
 
@@ -508,7 +512,7 @@ Functions
    .. zeek:see:: lookup_addr lookup_hostname
 
 .. zeek:id:: bytestring_to_count
-   :source-code: base/bif/zeek.bif.zeek 1567 1567
+   :source-code: base/bif/zeek.bif.zeek 1646 1646
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`, is_le: :zeek:type:`bool` :zeek:attr:`&default` = ``F`` :zeek:attr:`&optional`) : :zeek:type:`count`
 
@@ -525,7 +529,7 @@ Functions
    
 
 .. zeek:id:: bytestring_to_double
-   :source-code: base/bif/zeek.bif.zeek 1543 1543
+   :source-code: base/bif/zeek.bif.zeek 1622 1622
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`double`
 
@@ -543,7 +547,7 @@ Functions
    .. zeek:see:: bytestring_to_float
 
 .. zeek:id:: bytestring_to_float
-   :source-code: base/bif/zeek.bif.zeek 1556 1556
+   :source-code: base/bif/zeek.bif.zeek 1635 1635
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`double`
 
@@ -561,7 +565,7 @@ Functions
    .. zeek:see:: bytestring_to_double
 
 .. zeek:id:: bytestring_to_hexstr
-   :source-code: base/bif/zeek.bif.zeek 1600 1600
+   :source-code: base/bif/zeek.bif.zeek 1679 1679
 
    :Type: :zeek:type:`function` (bytestring: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -577,7 +581,7 @@ Functions
    .. zeek:see:: hexdump hexstr_to_bytestring
 
 .. zeek:id:: calc_next_rotate
-   :source-code: base/bif/zeek.bif.zeek 2300 2300
+   :source-code: base/bif/zeek.bif.zeek 2379 2379
 
    :Type: :zeek:type:`function` (i: :zeek:type:`interval`) : :zeek:type:`interval`
 
@@ -593,7 +597,7 @@ Functions
    .. zeek:see:: rotate_file rotate_file_by_name
 
 .. zeek:id:: cat
-   :source-code: base/bif/zeek.bif.zeek 803 803
+   :source-code: base/bif/zeek.bif.zeek 882 882
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -605,7 +609,7 @@ Functions
    :returns: A string concatenation of all arguments.
 
 .. zeek:id:: cat_sep
-   :source-code: base/bif/zeek.bif.zeek 819 819
+   :source-code: base/bif/zeek.bif.zeek 898 898
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -627,7 +631,7 @@ Functions
    .. zeek:see:: cat string_cat
 
 .. zeek:id:: ceil
-   :source-code: base/bif/zeek.bif.zeek 900 900
+   :source-code: base/bif/zeek.bif.zeek 979 979
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -644,7 +648,7 @@ Functions
    .. zeek:see:: floor sqrt exp ln log2 log10 pow
 
 .. zeek:id:: check_subnet
-   :source-code: base/bif/zeek.bif.zeek 711 711
+   :source-code: base/bif/zeek.bif.zeek 790 790
 
    :Type: :zeek:type:`function` (search: :zeek:type:`subnet`, t: :zeek:type:`any`) : :zeek:type:`bool`
 
@@ -662,7 +666,7 @@ Functions
    :returns: True if the exact subnet is a member, false otherwise.
 
 .. zeek:id:: clear_table
-   :source-code: base/bif/zeek.bif.zeek 658 658
+   :source-code: base/bif/zeek.bif.zeek 737 737
 
    :Type: :zeek:type:`function` (v: :zeek:type:`any`) : :zeek:type:`any`
 
@@ -672,7 +676,7 @@ Functions
    :param v: The set or table
 
 .. zeek:id:: close
-   :source-code: base/bif/zeek.bif.zeek 2154 2154
+   :source-code: base/bif/zeek.bif.zeek 2233 2233
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`) : :zeek:type:`bool`
 
@@ -689,7 +693,7 @@ Functions
                 rmdir unlink rename
 
 .. zeek:id:: compress_path
-   :source-code: base/bif/zeek.bif.zeek 2693 2693
+   :source-code: base/bif/zeek.bif.zeek 2772 2772
 
    :Type: :zeek:type:`function` (dir: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -703,7 +707,7 @@ Functions
    :returns: a compressed version of the input path.
 
 .. zeek:id:: connection_exists
-   :source-code: base/bif/zeek.bif.zeek 1827 1827
+   :source-code: base/bif/zeek.bif.zeek 1906 1906
 
    :Type: :zeek:type:`function` (c: :zeek:type:`conn_id`) : :zeek:type:`bool`
 
@@ -718,7 +722,7 @@ Functions
    .. zeek:see:: lookup_connection
 
 .. zeek:id:: continue_processing
-   :source-code: base/bif/zeek.bif.zeek 2532 2532
+   :source-code: base/bif/zeek.bif.zeek 2611 2611
 
    :Type: :zeek:type:`function` () : :zeek:type:`any`
 
@@ -728,7 +732,7 @@ Functions
                  is_processing_suspended
 
 .. zeek:id:: convert_for_pattern
-   :source-code: base/bif/zeek.bif.zeek 1686 1686
+   :source-code: base/bif/zeek.bif.zeek 1765 1765
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -747,7 +751,7 @@ Functions
    
 
 .. zeek:id:: count_to_double
-   :source-code: base/bif/zeek.bif.zeek 1343 1343
+   :source-code: base/bif/zeek.bif.zeek 1422 1422
 
    :Type: :zeek:type:`function` (c: :zeek:type:`count`) : :zeek:type:`double`
 
@@ -762,7 +766,7 @@ Functions
    .. zeek:see:: int_to_double double_to_count
 
 .. zeek:id:: count_to_port
-   :source-code: base/bif/zeek.bif.zeek 1405 1405
+   :source-code: base/bif/zeek.bif.zeek 1484 1484
 
    :Type: :zeek:type:`function` (num: :zeek:type:`count`, proto: :zeek:type:`transport_proto`) : :zeek:type:`port`
 
@@ -780,7 +784,7 @@ Functions
    .. zeek:see:: port_to_count
 
 .. zeek:id:: count_to_v4_addr
-   :source-code: base/bif/zeek.bif.zeek 1496 1496
+   :source-code: base/bif/zeek.bif.zeek 1575 1575
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`count`) : :zeek:type:`addr`
 
@@ -795,7 +799,7 @@ Functions
    .. zeek:see:: raw_bytes_to_v4_addr to_addr to_subnet raw_bytes_to_v6_addr
 
 .. zeek:id:: counts_to_addr
-   :source-code: base/bif/zeek.bif.zeek 1258 1258
+   :source-code: base/bif/zeek.bif.zeek 1337 1337
 
    :Type: :zeek:type:`function` (v: :zeek:type:`index_vec`) : :zeek:type:`addr`
 
@@ -811,7 +815,7 @@ Functions
    .. zeek:see:: addr_to_counts
 
 .. zeek:id:: current_analyzer
-   :source-code: base/bif/zeek.bif.zeek 975 975
+   :source-code: base/bif/zeek.bif.zeek 1054 1054
 
    :Type: :zeek:type:`function` () : :zeek:type:`count`
 
@@ -855,7 +859,7 @@ Functions
    .. zeek:see:: network_time set_network_time
 
 .. zeek:id:: decode_base64
-   :source-code: base/bif/zeek.bif.zeek 1640 1640
+   :source-code: base/bif/zeek.bif.zeek 1719 1719
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`, a: :zeek:type:`string` :zeek:attr:`&default` = ``""`` :zeek:attr:`&optional`) : :zeek:type:`string`
 
@@ -874,7 +878,7 @@ Functions
    .. zeek:see:: decode_base64_conn encode_base64
 
 .. zeek:id:: decode_base64_conn
-   :source-code: base/bif/zeek.bif.zeek 1657 1657
+   :source-code: base/bif/zeek.bif.zeek 1736 1736
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`, s: :zeek:type:`string`, a: :zeek:type:`string` :zeek:attr:`&default` = ``""`` :zeek:attr:`&optional`) : :zeek:type:`string`
 
@@ -898,7 +902,7 @@ Functions
    .. zeek:see:: decode_base64
 
 .. zeek:id:: disable_analyzer
-   :source-code: base/bif/zeek.bif.zeek 2059 2059
+   :source-code: base/bif/zeek.bif.zeek 2138 2138
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`, aid: :zeek:type:`count`, err_if_no_conn: :zeek:type:`bool` :zeek:attr:`&default` = ``T`` :zeek:attr:`&optional`, prevent: :zeek:type:`bool` :zeek:attr:`&default` = ``F`` :zeek:attr:`&optional`) : :zeek:type:`bool`
 
@@ -927,7 +931,7 @@ Functions
    .. zeek:see:: Analyzer::schedule_analyzer Analyzer::name
 
 .. zeek:id:: disable_event_group
-   :source-code: base/bif/zeek.bif.zeek 2743 2743
+   :source-code: base/bif/zeek.bif.zeek 2822 2822
 
    :Type: :zeek:type:`function` (group: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -943,7 +947,7 @@ Functions
                  enable_module_events disable_module_events has_module_events
 
 .. zeek:id:: disable_module_events
-   :source-code: base/bif/zeek.bif.zeek 2775 2775
+   :source-code: base/bif/zeek.bif.zeek 2854 2854
 
    :Type: :zeek:type:`function` (module_name: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -958,7 +962,7 @@ Functions
                  enable_module_events disable_module_events has_module_events
 
 .. zeek:id:: do_profiling
-   :source-code: base/bif/zeek.bif.zeek 1145 1145
+   :source-code: base/bif/zeek.bif.zeek 1224 1224
 
    :Type: :zeek:type:`function` () : :zeek:type:`any`
 
@@ -980,7 +984,7 @@ Functions
                 get_timer_stats
 
 .. zeek:id:: double_to_count
-   :source-code: base/bif/zeek.bif.zeek 1309 1309
+   :source-code: base/bif/zeek.bif.zeek 1388 1388
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`count`
 
@@ -995,7 +999,7 @@ Functions
             by rint().
 
 .. zeek:id:: double_to_int
-   :source-code: base/bif/zeek.bif.zeek 1299 1299
+   :source-code: base/bif/zeek.bif.zeek 1378 1378
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`int`
 
@@ -1011,7 +1015,7 @@ Functions
    .. zeek:see:: double_to_time
 
 .. zeek:id:: double_to_interval
-   :source-code: base/bif/zeek.bif.zeek 1383 1383
+   :source-code: base/bif/zeek.bif.zeek 1462 1462
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`interval`
 
@@ -1026,7 +1030,7 @@ Functions
    .. zeek:see:: interval_to_double
 
 .. zeek:id:: double_to_time
-   :source-code: base/bif/zeek.bif.zeek 1373 1373
+   :source-code: base/bif/zeek.bif.zeek 1452 1452
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`time`
 
@@ -1041,7 +1045,7 @@ Functions
    .. zeek:see:: time_to_double double_to_count
 
 .. zeek:id:: dump_current_packet
-   :source-code: base/bif/zeek.bif.zeek 1855 1855
+   :source-code: base/bif/zeek.bif.zeek 1934 1934
 
    :Type: :zeek:type:`function` (file_name: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1060,7 +1064,7 @@ Functions
         See :zeek:see:`get_current_packet` for caveats.
 
 .. zeek:id:: dump_packet
-   :source-code: base/bif/zeek.bif.zeek 1932 1932
+   :source-code: base/bif/zeek.bif.zeek 2011 2011
 
    :Type: :zeek:type:`function` (pkt: :zeek:type:`pcap_packet`, file_name: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1078,7 +1082,7 @@ Functions
    .. zeek:see:: get_current_packet dump_current_packet
 
 .. zeek:id:: dump_rule_stats
-   :source-code: base/bif/zeek.bif.zeek 1164 1164
+   :source-code: base/bif/zeek.bif.zeek 1243 1243
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`) : :zeek:type:`bool`
 
@@ -1094,7 +1098,7 @@ Functions
    .. zeek:see:: get_matcher_stats
 
 .. zeek:id:: enable_event_group
-   :source-code: base/bif/zeek.bif.zeek 2731 2731
+   :source-code: base/bif/zeek.bif.zeek 2810 2810
 
    :Type: :zeek:type:`function` (group: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1110,7 +1114,7 @@ Functions
                  enable_module_events disable_module_events has_module_events
 
 .. zeek:id:: enable_module_events
-   :source-code: base/bif/zeek.bif.zeek 2764 2764
+   :source-code: base/bif/zeek.bif.zeek 2843 2843
 
    :Type: :zeek:type:`function` (module_name: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1126,7 +1130,7 @@ Functions
                  enable_module_events disable_module_events has_module_events
 
 .. zeek:id:: enable_raw_output
-   :source-code: base/bif/zeek.bif.zeek 2315 2315
+   :source-code: base/bif/zeek.bif.zeek 2394 2394
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`) : :zeek:type:`any`
 
@@ -1137,7 +1141,7 @@ Functions
    :param f: The file to disable raw output for.
 
 .. zeek:id:: encode_base64
-   :source-code: base/bif/zeek.bif.zeek 1627 1627
+   :source-code: base/bif/zeek.bif.zeek 1706 1706
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`, a: :zeek:type:`string` :zeek:attr:`&default` = ``""`` :zeek:attr:`&optional`) : :zeek:type:`string`
 
@@ -1156,7 +1160,7 @@ Functions
    .. zeek:see:: decode_base64
 
 .. zeek:id:: entropy_test_add
-   :source-code: base/bif/zeek.bif.zeek 611 611
+   :source-code: base/bif/zeek.bif.zeek 690 690
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of entropy, data: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1174,7 +1178,7 @@ Functions
    .. zeek:see:: find_entropy entropy_test_add entropy_test_finish
 
 .. zeek:id:: entropy_test_finish
-   :source-code: base/bif/zeek.bif.zeek 624 624
+   :source-code: base/bif/zeek.bif.zeek 703 703
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of entropy) : :zeek:type:`entropy_test_result`
 
@@ -1192,7 +1196,7 @@ Functions
    .. zeek:see:: find_entropy entropy_test_init entropy_test_add
 
 .. zeek:id:: entropy_test_init
-   :source-code: base/bif/zeek.bif.zeek 599 599
+   :source-code: base/bif/zeek.bif.zeek 678 678
 
    :Type: :zeek:type:`function` () : :zeek:type:`opaque` of entropy
 
@@ -1204,7 +1208,7 @@ Functions
    .. zeek:see:: find_entropy entropy_test_add entropy_test_finish
 
 .. zeek:id:: enum_names
-   :source-code: base/bif/zeek.bif.zeek 1035 1035
+   :source-code: base/bif/zeek.bif.zeek 1114 1114
 
    :Type: :zeek:type:`function` (et: :zeek:type:`any`) : :zeek:type:`string_set`
 
@@ -1218,7 +1222,7 @@ Functions
             If *et* is not an enum type or does not name one, an empty set is returned.
 
 .. zeek:id:: enum_to_int
-   :source-code: base/bif/zeek.bif.zeek 1266 1266
+   :source-code: base/bif/zeek.bif.zeek 1345 1345
 
    :Type: :zeek:type:`function` (e: :zeek:type:`any`) : :zeek:type:`int`
 
@@ -1243,7 +1247,7 @@ Functions
    .. zeek:see:: terminate
 
 .. zeek:id:: exp
-   :source-code: base/bif/zeek.bif.zeek 920 920
+   :source-code: base/bif/zeek.bif.zeek 999 999
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -1258,7 +1262,7 @@ Functions
    .. zeek:see:: floor ceil sqrt ln log2 log10 pow
 
 .. zeek:id:: file_magic
-   :source-code: base/bif/zeek.bif.zeek 548 548
+   :source-code: base/bif/zeek.bif.zeek 627 627
 
    :Type: :zeek:type:`function` (data: :zeek:type:`string`) : :zeek:type:`mime_matches`
 
@@ -1274,7 +1278,7 @@ Functions
    .. zeek:see:: identify_data
 
 .. zeek:id:: file_mode
-   :source-code: base/bif/zeek.bif.zeek 2015 2015
+   :source-code: base/bif/zeek.bif.zeek 2094 2094
 
    :Type: :zeek:type:`function` (mode: :zeek:type:`count`) : :zeek:type:`string`
 
@@ -1288,7 +1292,7 @@ Functions
             ``rw[xsS]rw[xsS]rw[xtT]``.
 
 .. zeek:id:: file_size
-   :source-code: base/bif/zeek.bif.zeek 2308 2308
+   :source-code: base/bif/zeek.bif.zeek 2387 2387
 
    :Type: :zeek:type:`function` (f: :zeek:type:`string`) : :zeek:type:`double`
 
@@ -1301,7 +1305,7 @@ Functions
    :returns: The size of *f* in bytes.
 
 .. zeek:id:: filter_subnet_table
-   :source-code: base/bif/zeek.bif.zeek 699 699
+   :source-code: base/bif/zeek.bif.zeek 778 778
 
    :Type: :zeek:type:`function` (search: :zeek:type:`subnet`, t: :zeek:type:`any`) : :zeek:type:`any`
 
@@ -1318,7 +1322,7 @@ Functions
    :returns: A new table that contains all the entries that cover the subnet searched for.
 
 .. zeek:id:: find_entropy
-   :source-code: base/bif/zeek.bif.zeek 591 591
+   :source-code: base/bif/zeek.bif.zeek 670 670
 
    :Type: :zeek:type:`function` (data: :zeek:type:`string`) : :zeek:type:`entropy_test_result`
 
@@ -1366,7 +1370,7 @@ Functions
    .. zeek:see:: entropy_test_init entropy_test_add entropy_test_finish
 
 .. zeek:id:: find_in_zeekpath
-   :source-code: base/bif/zeek.bif.zeek 2825 2825
+   :source-code: base/bif/zeek.bif.zeek 2904 2904
 
    :Type: :zeek:type:`function` (p: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -1384,7 +1388,7 @@ Functions
    :returns: Path of script file that would be loaded by an @load directive.
 
 .. zeek:id:: floor
-   :source-code: base/bif/zeek.bif.zeek 888 888
+   :source-code: base/bif/zeek.bif.zeek 967 967
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -1401,7 +1405,7 @@ Functions
    .. zeek:see:: ceil sqrt exp ln log2 log10 pow
 
 .. zeek:id:: flush_all
-   :source-code: base/bif/zeek.bif.zeek 2193 2193
+   :source-code: base/bif/zeek.bif.zeek 2272 2272
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -1415,7 +1419,7 @@ Functions
                 rmdir unlink rename
 
 .. zeek:id:: fmt
-   :source-code: base/bif/zeek.bif.zeek 860 860
+   :source-code: base/bif/zeek.bif.zeek 939 939
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -1460,7 +1464,7 @@ Functions
    .. zeek:see:: cat cat_sep string_cat
 
 .. zeek:id:: fnv1a32
-   :source-code: base/bif/zeek.bif.zeek 461 461
+   :source-code: base/bif/zeek.bif.zeek 540 540
 
    :Type: :zeek:type:`function` (input: :zeek:type:`any`) : :zeek:type:`count`
 
@@ -1476,7 +1480,7 @@ Functions
    .. zeek:see:: hrw_weight
 
 .. zeek:id:: fnv1a64
-   :source-code: base/bif/zeek.bif.zeek 470 470
+   :source-code: base/bif/zeek.bif.zeek 549 549
 
    :Type: :zeek:type:`function` (input: :zeek:type:`any`) : :zeek:type:`count`
 
@@ -1490,7 +1494,7 @@ Functions
    :returns: The hashed value.
 
 .. zeek:id:: from_json
-   :source-code: base/bif/zeek.bif.zeek 2684 2684
+   :source-code: base/bif/zeek.bif.zeek 2763 2763
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`, t: :zeek:type:`any`, key_func: :zeek:type:`string_mapper` :zeek:attr:`&default` = :zeek:see:`from_json_default_key_mapper` :zeek:attr:`&optional`) : :zeek:type:`from_json_result`
 
@@ -1528,7 +1532,7 @@ Functions
    .. zeek:see:: to_json
 
 .. zeek:id:: generate_all_events
-   :source-code: base/bif/zeek.bif.zeek 2559 2559
+   :source-code: base/bif/zeek.bif.zeek 2638 2638
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -1540,7 +1544,7 @@ Functions
    only useful for debugging and causes reduced performance.
 
 .. zeek:id:: get_conn_transport_proto
-   :source-code: base/bif/zeek.bif.zeek 1806 1806
+   :source-code: base/bif/zeek.bif.zeek 1885 1885
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`) : :zeek:type:`transport_proto`
 
@@ -1556,7 +1560,7 @@ Functions
                 get_orig_seq get_resp_seq
 
 .. zeek:id:: get_current_packet
-   :source-code: base/bif/zeek.bif.zeek 1881 1881
+   :source-code: base/bif/zeek.bif.zeek 1960 1960
 
    :Type: :zeek:type:`function` () : :zeek:type:`pcap_packet`
 
@@ -1586,7 +1590,7 @@ Functions
         :zeek:see:`schedule` or by recipient of Broker messages.
 
 .. zeek:id:: get_current_packet_header
-   :source-code: base/bif/zeek.bif.zeek 1904 1904
+   :source-code: base/bif/zeek.bif.zeek 1983 1983
 
    :Type: :zeek:type:`function` () : :zeek:type:`raw_pkt_hdr`
 
@@ -1613,7 +1617,7 @@ Functions
         the sum of the individual fragment data lengths.
 
 .. zeek:id:: get_current_packet_ts
-   :source-code: base/bif/zeek.bif.zeek 1920 1920
+   :source-code: base/bif/zeek.bif.zeek 1999 1999
 
    :Type: :zeek:type:`function` () : :zeek:type:`time`
 
@@ -1633,7 +1637,7 @@ Functions
         wall clock after ``packet_source_inactivity_timeout``.
 
 .. zeek:id:: get_file_name
-   :source-code: base/bif/zeek.bif.zeek 2267 2267
+   :source-code: base/bif/zeek.bif.zeek 2346 2346
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`) : :zeek:type:`string`
 
@@ -1648,7 +1652,7 @@ Functions
    .. zeek:see:: open
 
 .. zeek:id:: get_plugin_components
-   :source-code: base/bif/zeek.bif.zeek 2834 2834
+   :source-code: base/bif/zeek.bif.zeek 2913 2913
 
    :Type: :zeek:type:`function` (category: :zeek:type:`string`) : :zeek:type:`plugin_component_vec`
 
@@ -1662,7 +1666,7 @@ Functions
             that belong to the specified category.
 
 .. zeek:id:: get_port_transport_proto
-   :source-code: base/bif/zeek.bif.zeek 1817 1817
+   :source-code: base/bif/zeek.bif.zeek 1896 1896
 
    :Type: :zeek:type:`function` (p: :zeek:type:`port`) : :zeek:type:`transport_proto`
 
@@ -1694,7 +1698,7 @@ Functions
    .. zeek:see:: setenv
 
 .. zeek:id:: gethostname
-   :source-code: base/bif/zeek.bif.zeek 1178 1178
+   :source-code: base/bif/zeek.bif.zeek 1257 1257
 
    :Type: :zeek:type:`function` () : :zeek:type:`string`
 
@@ -1704,7 +1708,7 @@ Functions
    :returns: The hostname of the machine Zeek runs on.
 
 .. zeek:id:: getpid
-   :source-code: base/bif/zeek.bif.zeek 981 981
+   :source-code: base/bif/zeek.bif.zeek 1060 1060
 
    :Type: :zeek:type:`function` () : :zeek:type:`count`
 
@@ -1714,7 +1718,7 @@ Functions
    :returns: Zeek's process ID.
 
 .. zeek:id:: global_container_footprints
-   :source-code: base/bif/zeek.bif.zeek 1077 1077
+   :source-code: base/bif/zeek.bif.zeek 1156 1156
 
    :Type: :zeek:type:`function` () : :zeek:type:`var_sizes`
 
@@ -1730,7 +1734,7 @@ Functions
    .. zeek:see:: val_footprint
 
 .. zeek:id:: global_ids
-   :source-code: base/bif/zeek.bif.zeek 1100 1100
+   :source-code: base/bif/zeek.bif.zeek 1179 1179
 
    :Type: :zeek:type:`function` () : :zeek:type:`id_table`
 
@@ -1747,14 +1751,14 @@ Functions
    :returns: A table that maps identifier names to information about them.
 
 .. zeek:id:: global_options
-   :source-code: base/bif/zeek.bif.zeek 1104 1104
+   :source-code: base/bif/zeek.bif.zeek 1183 1183
 
    :Type: :zeek:type:`function` () : :zeek:type:`string_set`
 
    Returns a set giving the names of all global options.
 
 .. zeek:id:: has_event_group
-   :source-code: base/bif/zeek.bif.zeek 2752 2752
+   :source-code: base/bif/zeek.bif.zeek 2831 2831
 
    :Type: :zeek:type:`function` (group: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1767,7 +1771,7 @@ Functions
                  enable_module_events disable_module_events has_module_events
 
 .. zeek:id:: has_module_events
-   :source-code: base/bif/zeek.bif.zeek 2784 2784
+   :source-code: base/bif/zeek.bif.zeek 2863 2863
 
    :Type: :zeek:type:`function` (group: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -1780,7 +1784,7 @@ Functions
                  enable_module_events disable_module_events has_module_events
 
 .. zeek:id:: have_spicy
-   :source-code: base/bif/zeek.bif.zeek 2789 2789
+   :source-code: base/bif/zeek.bif.zeek 2868 2868
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -1788,7 +1792,7 @@ Functions
    is the default).
 
 .. zeek:id:: have_spicy_analyzers
-   :source-code: base/bif/zeek.bif.zeek 2794 2794
+   :source-code: base/bif/zeek.bif.zeek 2873 2873
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -1796,7 +1800,7 @@ Functions
    (which is the default if Spicy support is available).
 
 .. zeek:id:: haversine_distance
-   :source-code: base/bif/zeek.bif.zeek 2006 2006
+   :source-code: base/bif/zeek.bif.zeek 2085 2085
 
    :Type: :zeek:type:`function` (lat1: :zeek:type:`double`, long1: :zeek:type:`double`, lat2: :zeek:type:`double`, long2: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -1823,7 +1827,7 @@ Functions
    .. zeek:see:: haversine_distance_ip
 
 .. zeek:id:: hexstr_to_bytestring
-   :source-code: base/bif/zeek.bif.zeek 1614 1614
+   :source-code: base/bif/zeek.bif.zeek 1693 1693
 
    :Type: :zeek:type:`function` (hexstr: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -1842,7 +1846,7 @@ Functions
    .. zeek:see:: hexdump bytestring_to_hexstr
 
 .. zeek:id:: hrw_weight
-   :source-code: base/bif/zeek.bif.zeek 486 486
+   :source-code: base/bif/zeek.bif.zeek 565 565
 
    :Type: :zeek:type:`function` (key_digest: :zeek:type:`count`, site_id: :zeek:type:`count`) : :zeek:type:`count`
 
@@ -1865,7 +1869,7 @@ Functions
    .. zeek:see:: fnv1a32
 
 .. zeek:id:: identify_data
-   :source-code: base/bif/zeek.bif.zeek 537 537
+   :source-code: base/bif/zeek.bif.zeek 616 616
 
    :Type: :zeek:type:`function` (data: :zeek:type:`string`, return_mime: :zeek:type:`bool` :zeek:attr:`&default` = ``T`` :zeek:attr:`&optional`) : :zeek:type:`string`
 
@@ -1886,7 +1890,7 @@ Functions
    .. zeek:see:: file_magic
 
 .. zeek:id:: install_dst_addr_filter
-   :source-code: base/bif/zeek.bif.zeek 2445 2445
+   :source-code: base/bif/zeek.bif.zeek 2524 2524
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`addr`, tcp_flags: :zeek:type:`count`, prob: :zeek:type:`double`) : :zeek:type:`bool`
 
@@ -1923,7 +1927,7 @@ Functions
    .. todo:: The return value should be changed to any.
 
 .. zeek:id:: install_dst_net_filter
-   :source-code: base/bif/zeek.bif.zeek 2472 2472
+   :source-code: base/bif/zeek.bif.zeek 2551 2551
 
    :Type: :zeek:type:`function` (snet: :zeek:type:`subnet`, tcp_flags: :zeek:type:`count`, prob: :zeek:type:`double`) : :zeek:type:`bool`
 
@@ -1957,7 +1961,7 @@ Functions
    .. todo:: The return value should be changed to any.
 
 .. zeek:id:: install_src_addr_filter
-   :source-code: base/bif/zeek.bif.zeek 2350 2350
+   :source-code: base/bif/zeek.bif.zeek 2429 2429
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`addr`, tcp_flags: :zeek:type:`count`, prob: :zeek:type:`double`) : :zeek:type:`bool`
 
@@ -1993,7 +1997,7 @@ Functions
    .. todo:: The return value should be changed to any.
 
 .. zeek:id:: install_src_net_filter
-   :source-code: base/bif/zeek.bif.zeek 2377 2377
+   :source-code: base/bif/zeek.bif.zeek 2456 2456
 
    :Type: :zeek:type:`function` (snet: :zeek:type:`subnet`, tcp_flags: :zeek:type:`count`, prob: :zeek:type:`double`) : :zeek:type:`bool`
 
@@ -2027,7 +2031,7 @@ Functions
    .. todo:: The return value should be changed to any.
 
 .. zeek:id:: int_to_count
-   :source-code: base/bif/zeek.bif.zeek 1288 1288
+   :source-code: base/bif/zeek.bif.zeek 1367 1367
 
    :Type: :zeek:type:`function` (n: :zeek:type:`int`) : :zeek:type:`count`
 
@@ -2040,7 +2044,7 @@ Functions
    :returns: The :zeek:type:`int` *n* as unsigned integer, or 0 if *n* < 0.
 
 .. zeek:id:: int_to_double
-   :source-code: base/bif/zeek.bif.zeek 1353 1353
+   :source-code: base/bif/zeek.bif.zeek 1432 1432
 
    :Type: :zeek:type:`function` (i: :zeek:type:`int`) : :zeek:type:`double`
 
@@ -2055,7 +2059,7 @@ Functions
    .. zeek:see:: count_to_double double_to_count
 
 .. zeek:id:: interval_to_double
-   :source-code: base/bif/zeek.bif.zeek 1333 1333
+   :source-code: base/bif/zeek.bif.zeek 1412 1412
 
    :Type: :zeek:type:`function` (i: :zeek:type:`interval`) : :zeek:type:`double`
 
@@ -2070,7 +2074,7 @@ Functions
    .. zeek:see:: double_to_interval
 
 .. zeek:id:: is_event_handled
-   :source-code: base/bif/zeek.bif.zeek 2571 2571
+   :source-code: base/bif/zeek.bif.zeek 2650 2650
 
    :Type: :zeek:type:`function` (event_name: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -2087,7 +2091,7 @@ Functions
    :param returns: true if the named event is handled.
 
 .. zeek:id:: is_file_analyzer
-   :source-code: base/bif/zeek.bif.zeek 2709 2709
+   :source-code: base/bif/zeek.bif.zeek 2788 2788
 
    :Type: :zeek:type:`function` (atype: :zeek:type:`AllAnalyzers::Tag`) : :zeek:type:`bool`
 
@@ -2100,7 +2104,7 @@ Functions
    :returns: true if *atype* is a tag of a file analyzer, else false.
 
 .. zeek:id:: is_icmp_port
-   :source-code: base/bif/zeek.bif.zeek 1793 1793
+   :source-code: base/bif/zeek.bif.zeek 1872 1872
 
    :Type: :zeek:type:`function` (p: :zeek:type:`port`) : :zeek:type:`bool`
 
@@ -2115,7 +2119,7 @@ Functions
    .. zeek:see:: is_tcp_port is_udp_port
 
 .. zeek:id:: is_local_interface
-   :source-code: base/bif/zeek.bif.zeek 1153 1153
+   :source-code: base/bif/zeek.bif.zeek 1232 1232
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`addr`) : :zeek:type:`bool`
 
@@ -2128,7 +2132,7 @@ Functions
    :returns: True if *ip* belongs to a local interface.
 
 .. zeek:id:: is_packet_analyzer
-   :source-code: base/bif/zeek.bif.zeek 2717 2717
+   :source-code: base/bif/zeek.bif.zeek 2796 2796
 
    :Type: :zeek:type:`function` (atype: :zeek:type:`AllAnalyzers::Tag`) : :zeek:type:`bool`
 
@@ -2141,7 +2145,7 @@ Functions
    :returns: true if *atype* is a tag of a packet analyzer, else false.
 
 .. zeek:id:: is_processing_suspended
-   :source-code: base/bif/zeek.bif.zeek 2539 2539
+   :source-code: base/bif/zeek.bif.zeek 2618 2618
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -2151,7 +2155,7 @@ Functions
                  continue_processing
 
 .. zeek:id:: is_protocol_analyzer
-   :source-code: base/bif/zeek.bif.zeek 2701 2701
+   :source-code: base/bif/zeek.bif.zeek 2780 2780
 
    :Type: :zeek:type:`function` (atype: :zeek:type:`AllAnalyzers::Tag`) : :zeek:type:`bool`
 
@@ -2164,7 +2168,7 @@ Functions
    :returns: true if *atype* is a tag of a protocol analyzer, else false.
 
 .. zeek:id:: is_remote_event
-   :source-code: base/bif/zeek.bif.zeek 2516 2516
+   :source-code: base/bif/zeek.bif.zeek 2595 2595
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -2174,7 +2178,7 @@ Functions
    :returns: True if the current event came from a remote peer.
 
 .. zeek:id:: is_tcp_port
-   :source-code: base/bif/zeek.bif.zeek 1773 1773
+   :source-code: base/bif/zeek.bif.zeek 1852 1852
 
    :Type: :zeek:type:`function` (p: :zeek:type:`port`) : :zeek:type:`bool`
 
@@ -2189,7 +2193,7 @@ Functions
    .. zeek:see:: is_udp_port is_icmp_port
 
 .. zeek:id:: is_udp_port
-   :source-code: base/bif/zeek.bif.zeek 1783 1783
+   :source-code: base/bif/zeek.bif.zeek 1862 1862
 
    :Type: :zeek:type:`function` (p: :zeek:type:`port`) : :zeek:type:`bool`
 
@@ -2204,7 +2208,7 @@ Functions
    .. zeek:see:: is_icmp_port is_tcp_port
 
 .. zeek:id:: is_v4_addr
-   :source-code: base/bif/zeek.bif.zeek 1186 1186
+   :source-code: base/bif/zeek.bif.zeek 1265 1265
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`) : :zeek:type:`bool`
 
@@ -2217,7 +2221,7 @@ Functions
    :returns: true if *a* is an IPv4 address, else false.
 
 .. zeek:id:: is_v4_subnet
-   :source-code: base/bif/zeek.bif.zeek 1202 1202
+   :source-code: base/bif/zeek.bif.zeek 1281 1281
 
    :Type: :zeek:type:`function` (s: :zeek:type:`subnet`) : :zeek:type:`bool`
 
@@ -2230,7 +2234,7 @@ Functions
    :returns: true if *s* is an IPv4 subnet, else false.
 
 .. zeek:id:: is_v6_addr
-   :source-code: base/bif/zeek.bif.zeek 1194 1194
+   :source-code: base/bif/zeek.bif.zeek 1273 1273
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`) : :zeek:type:`bool`
 
@@ -2243,7 +2247,7 @@ Functions
    :returns: true if *a* is an IPv6 address, else false.
 
 .. zeek:id:: is_v6_subnet
-   :source-code: base/bif/zeek.bif.zeek 1210 1210
+   :source-code: base/bif/zeek.bif.zeek 1289 1289
 
    :Type: :zeek:type:`function` (s: :zeek:type:`subnet`) : :zeek:type:`bool`
 
@@ -2256,7 +2260,7 @@ Functions
    :returns: true if *s* is an IPv6 subnet, else false.
 
 .. zeek:id:: is_valid_ip
-   :source-code: base/bif/zeek.bif.zeek 1425 1425
+   :source-code: base/bif/zeek.bif.zeek 1504 1504
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -2269,7 +2273,7 @@ Functions
    :returns: T if the string is a valid IPv4 or IPv6 address format.
 
 .. zeek:id:: is_valid_subnet
-   :source-code: base/bif/zeek.bif.zeek 1433 1433
+   :source-code: base/bif/zeek.bif.zeek 1512 1512
 
    :Type: :zeek:type:`function` (cidr: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -2282,7 +2286,7 @@ Functions
    :returns: T if the string is a valid IPv4 or IPv6 subnet format.
 
 .. zeek:id:: ln
-   :source-code: base/bif/zeek.bif.zeek 930 930
+   :source-code: base/bif/zeek.bif.zeek 1009 1009
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -2297,7 +2301,7 @@ Functions
    .. zeek:see:: floor ceil sqrt exp log2 log10 pow
 
 .. zeek:id:: log10
-   :source-code: base/bif/zeek.bif.zeek 950 950
+   :source-code: base/bif/zeek.bif.zeek 1029 1029
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -2312,7 +2316,7 @@ Functions
    .. zeek:see:: floor ceil sqrt exp ln log2 pow
 
 .. zeek:id:: log2
-   :source-code: base/bif/zeek.bif.zeek 940 940
+   :source-code: base/bif/zeek.bif.zeek 1019 1019
 
    :Type: :zeek:type:`function` (d: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -2327,7 +2331,7 @@ Functions
    .. zeek:see:: floor ceil sqrt exp ln log10 pow
 
 .. zeek:id:: lookup_ID
-   :source-code: base/bif/zeek.bif.zeek 1113 1113
+   :source-code: base/bif/zeek.bif.zeek 1192 1192
 
    :Type: :zeek:type:`function` (id: :zeek:type:`string`) : :zeek:type:`any`
 
@@ -2341,7 +2345,7 @@ Functions
             the string ``"<unknown id>"`` or ``"<no ID value>"`` is returned.
 
 .. zeek:id:: lookup_addr
-   :source-code: base/bif/zeek.bif.zeek 1946 1946
+   :source-code: base/bif/zeek.bif.zeek 2025 2025
 
    :Type: :zeek:type:`function` (host: :zeek:type:`addr`) : :zeek:type:`string`
 
@@ -2358,7 +2362,7 @@ Functions
    .. zeek:see:: lookup_hostname
 
 .. zeek:id:: lookup_connection
-   :source-code: base/bif/zeek.bif.zeek 1839 1839
+   :source-code: base/bif/zeek.bif.zeek 1918 1918
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`) : :zeek:type:`connection`
 
@@ -2375,7 +2379,7 @@ Functions
    .. zeek:see:: connection_exists
 
 .. zeek:id:: lookup_connection_analyzer_id
-   :source-code: base/bif/zeek.bif.zeek 2038 2038
+   :source-code: base/bif/zeek.bif.zeek 2117 2117
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`, atype: :zeek:type:`AllAnalyzers::Tag`) : :zeek:type:`count`
 
@@ -2396,7 +2400,7 @@ Functions
    .. zeek:see:: disable_analyzer Analyzer::disabling_analyzer
 
 .. zeek:id:: lookup_hostname
-   :source-code: base/bif/zeek.bif.zeek 1970 1970
+   :source-code: base/bif/zeek.bif.zeek 2049 2049
 
    :Type: :zeek:type:`function` (host: :zeek:type:`string`) : :zeek:type:`addr_set`
 
@@ -2413,7 +2417,7 @@ Functions
    .. zeek:see:: lookup_addr blocking_lookup_hostname
 
 .. zeek:id:: lookup_hostname_txt
-   :source-code: base/bif/zeek.bif.zeek 1958 1958
+   :source-code: base/bif/zeek.bif.zeek 2037 2037
 
    :Type: :zeek:type:`function` (host: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -2430,7 +2434,7 @@ Functions
    .. zeek:see:: lookup_hostname
 
 .. zeek:id:: mask_addr
-   :source-code: base/bif/zeek.bif.zeek 1743 1743
+   :source-code: base/bif/zeek.bif.zeek 1822 1822
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`, top_bits_to_keep: :zeek:type:`count`) : :zeek:type:`subnet`
 
@@ -2450,7 +2454,7 @@ Functions
    .. zeek:see:: remask_addr
 
 .. zeek:id:: match_signatures
-   :source-code: base/bif/zeek.bif.zeek 2550 2550
+   :source-code: base/bif/zeek.bif.zeek 2629 2629
 
    :Type: :zeek:type:`function` (c: :zeek:type:`connection`, pattern_type: :zeek:type:`int`, s: :zeek:type:`string`, bol: :zeek:type:`bool`, eol: :zeek:type:`bool`, from_orig: :zeek:type:`bool`, clear: :zeek:type:`bool`) : :zeek:type:`bool`
 
@@ -2458,7 +2462,7 @@ Functions
    This is an internal function.
 
 .. zeek:id:: matching_subnets
-   :source-code: base/bif/zeek.bif.zeek 688 688
+   :source-code: base/bif/zeek.bif.zeek 767 767
 
    :Type: :zeek:type:`function` (search: :zeek:type:`subnet`, t: :zeek:type:`any`) : :zeek:type:`subnet_vec`
 
@@ -2474,7 +2478,7 @@ Functions
    :returns: All the keys of the set or table that cover the subnet searched for.
 
 .. zeek:id:: md5_hash
-   :source-code: base/bif/zeek.bif.zeek 223 223
+   :source-code: base/bif/zeek.bif.zeek 224 224
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -2486,6 +2490,7 @@ Functions
    .. zeek:see:: md5_hmac md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash_init sha512_hash_update sha512_hash_finish
    
    .. note::
    
@@ -2494,7 +2499,7 @@ Functions
         friends.
 
 .. zeek:id:: md5_hash_finish
-   :source-code: base/bif/zeek.bif.zeek 390 390
+   :source-code: base/bif/zeek.bif.zeek 454 454
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of md5) : :zeek:type:`string`
 
@@ -2509,9 +2514,10 @@ Functions
    .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash sha512_hash_update sha512_hash_finish
 
 .. zeek:id:: md5_hash_init
-   :source-code: base/bif/zeek.bif.zeek 288 288
+   :source-code: base/bif/zeek.bif.zeek 309 309
 
    :Type: :zeek:type:`function` () : :zeek:type:`opaque` of md5
 
@@ -2536,7 +2542,7 @@ Functions
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
 
 .. zeek:id:: md5_hash_update
-   :source-code: base/bif/zeek.bif.zeek 346 346
+   :source-code: base/bif/zeek.bif.zeek 390 390
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of md5, data: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -2556,9 +2562,10 @@ Functions
    .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash sha512_hash_update sha512_hash_finish
 
 .. zeek:id:: md5_hmac
-   :source-code: base/bif/zeek.bif.zeek 267 267
+   :source-code: base/bif/zeek.bif.zeek 288 288
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -2572,9 +2579,10 @@ Functions
    .. zeek:see:: md5_hash md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash_init sha512_hash_update sha512_hash_finish
 
 .. zeek:id:: mkdir
-   :source-code: base/bif/zeek.bif.zeek 2206 2206
+   :source-code: base/bif/zeek.bif.zeek 2285 2285
 
    :Type: :zeek:type:`function` (f: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -2606,7 +2614,7 @@ Functions
    .. zeek:see:: current_time set_network_time
 
 .. zeek:id:: open
-   :source-code: base/bif/zeek.bif.zeek 2129 2129
+   :source-code: base/bif/zeek.bif.zeek 2208 2208
 
    :Type: :zeek:type:`function` (f: :zeek:type:`string`) : :zeek:type:`file`
 
@@ -2624,7 +2632,7 @@ Functions
                 rmdir unlink rename
 
 .. zeek:id:: open_for_append
-   :source-code: base/bif/zeek.bif.zeek 2142 2142
+   :source-code: base/bif/zeek.bif.zeek 2221 2221
 
    :Type: :zeek:type:`function` (f: :zeek:type:`string`) : :zeek:type:`file`
 
@@ -2642,7 +2650,7 @@ Functions
                 rmdir unlink rename
 
 .. zeek:id:: order
-   :source-code: base/bif/zeek.bif.zeek 789 789
+   :source-code: base/bif/zeek.bif.zeek 868 868
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`index_vec`
 
@@ -2661,7 +2669,7 @@ Functions
    .. zeek:see:: sort
 
 .. zeek:id:: packet_source
-   :source-code: base/bif/zeek.bif.zeek 1065 1065
+   :source-code: base/bif/zeek.bif.zeek 1144 1144
 
    :Type: :zeek:type:`function` () : :zeek:type:`PacketSource`
 
@@ -2671,7 +2679,7 @@ Functions
    .. zeek:see:: reading_live_traffic reading_traces
 
 .. zeek:id:: paraglob_equals
-   :source-code: base/bif/zeek.bif.zeek 448 448
+   :source-code: base/bif/zeek.bif.zeek 527 527
 
    :Type: :zeek:type:`function` (p_one: :zeek:type:`opaque` of paraglob, p_two: :zeek:type:`opaque` of paraglob) : :zeek:type:`bool`
 
@@ -2689,7 +2697,7 @@ Functions
    .. zeek:see:: paraglob_match paraglob_init
 
 .. zeek:id:: paraglob_init
-   :source-code: base/bif/zeek.bif.zeek 424 424
+   :source-code: base/bif/zeek.bif.zeek 503 503
 
    :Type: :zeek:type:`function` (v: :zeek:type:`any`) : :zeek:type:`opaque` of paraglob
 
@@ -2704,7 +2712,7 @@ Functions
    .. zeek:see:: paraglob_match paraglob_equals
 
 .. zeek:id:: paraglob_match
-   :source-code: base/bif/zeek.bif.zeek 436 436
+   :source-code: base/bif/zeek.bif.zeek 515 515
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of paraglob, match: :zeek:type:`string`) : :zeek:type:`string_vec`
 
@@ -2741,7 +2749,7 @@ Functions
    .. zeek:see:: system system_env
 
 .. zeek:id:: port_to_count
-   :source-code: base/bif/zeek.bif.zeek 1393 1393
+   :source-code: base/bif/zeek.bif.zeek 1472 1472
 
    :Type: :zeek:type:`function` (p: :zeek:type:`port`) : :zeek:type:`count`
 
@@ -2756,7 +2764,7 @@ Functions
    .. zeek:see:: count_to_port
 
 .. zeek:id:: pow
-   :source-code: base/bif/zeek.bif.zeek 962 962
+   :source-code: base/bif/zeek.bif.zeek 1041 1041
 
    :Type: :zeek:type:`function` (x: :zeek:type:`double`, y: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -2774,7 +2782,7 @@ Functions
    .. zeek:see:: floor ceil sqrt exp ln log2 log10
 
 .. zeek:id:: preserve_prefix
-   :source-code: base/bif/zeek.bif.zeek 2600 2600
+   :source-code: base/bif/zeek.bif.zeek 2679 2679
 
    :Type: :zeek:type:`function` (a: :zeek:type:`addr`, width: :zeek:type:`count`) : :zeek:type:`any`
 
@@ -2791,7 +2799,7 @@ Functions
    .. todo:: Currently dysfunctional.
 
 .. zeek:id:: preserve_subnet
-   :source-code: base/bif/zeek.bif.zeek 2610 2610
+   :source-code: base/bif/zeek.bif.zeek 2689 2689
 
    :Type: :zeek:type:`function` (a: :zeek:type:`subnet`) : :zeek:type:`any`
 
@@ -2805,7 +2813,7 @@ Functions
    .. todo:: Currently dysfunctional.
 
 .. zeek:id:: print_raw
-   :source-code: base/bif/zeek.bif.zeek 870 870
+   :source-code: base/bif/zeek.bif.zeek 949 949
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`bool`
 
@@ -2819,7 +2827,7 @@ Functions
    .. zeek:see:: fmt cat cat_sep string_cat to_json
 
 .. zeek:id:: ptr_name_to_addr
-   :source-code: base/bif/zeek.bif.zeek 1578 1578
+   :source-code: base/bif/zeek.bif.zeek 1657 1657
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`addr`
 
@@ -2835,7 +2843,7 @@ Functions
    .. zeek:see:: addr_to_ptr_name to_addr
 
 .. zeek:id:: rand
-   :source-code: base/bif/zeek.bif.zeek 501 501
+   :source-code: base/bif/zeek.bif.zeek 580 580
 
    :Type: :zeek:type:`function` (max: :zeek:type:`count`) : :zeek:type:`count`
 
@@ -2855,7 +2863,7 @@ Functions
         provided by the OS.
 
 .. zeek:id:: raw_bytes_to_v4_addr
-   :source-code: base/bif/zeek.bif.zeek 1508 1508
+   :source-code: base/bif/zeek.bif.zeek 1587 1587
 
    :Type: :zeek:type:`function` (b: :zeek:type:`string`) : :zeek:type:`addr`
 
@@ -2872,7 +2880,7 @@ Functions
    .. zeek:see:: raw_bytes_to_v4_addr to_addr to_subnet
 
 .. zeek:id:: raw_bytes_to_v6_addr
-   :source-code: base/bif/zeek.bif.zeek 1520 1520
+   :source-code: base/bif/zeek.bif.zeek 1599 1599
 
    :Type: :zeek:type:`function` (x: :zeek:type:`string`) : :zeek:type:`addr`
 
@@ -2889,7 +2897,7 @@ Functions
    .. zeek:see:: raw_bytes_to_v6_addr to_addr to_subnet
 
 .. zeek:id:: reading_live_traffic
-   :source-code: base/bif/zeek.bif.zeek 1050 1050
+   :source-code: base/bif/zeek.bif.zeek 1129 1129
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -2904,7 +2912,7 @@ Functions
    .. zeek:see:: reading_traces packet_source
 
 .. zeek:id:: reading_traces
-   :source-code: base/bif/zeek.bif.zeek 1059 1059
+   :source-code: base/bif/zeek.bif.zeek 1138 1138
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -2917,7 +2925,7 @@ Functions
    .. zeek:see:: reading_live_traffic packet_source
 
 .. zeek:id:: record_fields
-   :source-code: base/bif/zeek.bif.zeek 1126 1126
+   :source-code: base/bif/zeek.bif.zeek 1205 1205
 
    :Type: :zeek:type:`function` (rec: :zeek:type:`any`) : :zeek:type:`record_field_table`
 
@@ -2935,7 +2943,7 @@ Functions
             declared.
 
 .. zeek:id:: remask_addr
-   :source-code: base/bif/zeek.bif.zeek 1763 1763
+   :source-code: base/bif/zeek.bif.zeek 1842 1842
 
    :Type: :zeek:type:`function` (a1: :zeek:type:`addr`, a2: :zeek:type:`addr`, top_bits_from_a1: :zeek:type:`count`) : :zeek:type:`addr`
 
@@ -2962,7 +2970,7 @@ Functions
    .. zeek:see:: mask_addr
 
 .. zeek:id:: rename
-   :source-code: base/bif/zeek.bif.zeek 2247 2247
+   :source-code: base/bif/zeek.bif.zeek 2326 2326
 
    :Type: :zeek:type:`function` (src_f: :zeek:type:`string`, dst_f: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -2982,7 +2990,7 @@ Functions
                 mkdir rmdir unlink
 
 .. zeek:id:: resize
-   :source-code: base/bif/zeek.bif.zeek 733 733
+   :source-code: base/bif/zeek.bif.zeek 812 812
 
    :Type: :zeek:type:`function` (aggr: :zeek:type:`any`, newsize: :zeek:type:`count`) : :zeek:type:`count`
 
@@ -2998,7 +3006,7 @@ Functions
    :returns: The old size of *aggr*, or 0 if *aggr* is not a :zeek:type:`vector`.
 
 .. zeek:id:: rmdir
-   :source-code: base/bif/zeek.bif.zeek 2220 2220
+   :source-code: base/bif/zeek.bif.zeek 2299 2299
 
    :Type: :zeek:type:`function` (d: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -3016,7 +3024,7 @@ Functions
                 mkdir unlink rename
 
 .. zeek:id:: rotate_file
-   :source-code: base/bif/zeek.bif.zeek 2278 2278
+   :source-code: base/bif/zeek.bif.zeek 2357 2357
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`) : :zeek:type:`rotate_info`
 
@@ -3032,7 +3040,7 @@ Functions
    .. zeek:see:: rotate_file_by_name calc_next_rotate
 
 .. zeek:id:: rotate_file_by_name
-   :source-code: base/bif/zeek.bif.zeek 2289 2289
+   :source-code: base/bif/zeek.bif.zeek 2368 2368
 
    :Type: :zeek:type:`function` (f: :zeek:type:`string`) : :zeek:type:`rotate_info`
 
@@ -3048,7 +3056,7 @@ Functions
    .. zeek:see:: rotate_file calc_next_rotate
 
 .. zeek:id:: routing0_data_to_addrs
-   :source-code: base/bif/zeek.bif.zeek 1236 1236
+   :source-code: base/bif/zeek.bif.zeek 1315 1315
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`addr_vec`
 
@@ -3063,7 +3071,7 @@ Functions
    :returns: The vector of addresses contained in the routing header data.
 
 .. zeek:id:: same_object
-   :source-code: base/bif/zeek.bif.zeek 723 723
+   :source-code: base/bif/zeek.bif.zeek 802 802
 
    :Type: :zeek:type:`function` (o1: :zeek:type:`any`, o2: :zeek:type:`any`) : :zeek:type:`bool`
 
@@ -3081,7 +3089,7 @@ Functions
    :returns: True if *o1* and *o2* are equal.
 
 .. zeek:id:: set_buf
-   :source-code: base/bif/zeek.bif.zeek 2183 2183
+   :source-code: base/bif/zeek.bif.zeek 2262 2262
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`, buffered: :zeek:type:`bool`) : :zeek:type:`any`
 
@@ -3101,7 +3109,7 @@ Functions
                 rmdir unlink rename
 
 .. zeek:id:: set_inactivity_timeout
-   :source-code: base/bif/zeek.bif.zeek 2110 2110
+   :source-code: base/bif/zeek.bif.zeek 2189 2189
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`, t: :zeek:type:`interval`) : :zeek:type:`interval`
 
@@ -3134,7 +3142,7 @@ Functions
    .. zeek:see:: current_time network_time
 
 .. zeek:id:: set_record_packets
-   :source-code: base/bif/zeek.bif.zeek 2099 2099
+   :source-code: base/bif/zeek.bif.zeek 2178 2178
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`, do_record: :zeek:type:`bool`) : :zeek:type:`bool`
 
@@ -3181,7 +3189,7 @@ Functions
    .. zeek:see:: getenv
 
 .. zeek:id:: sha1_hash
-   :source-code: base/bif/zeek.bif.zeek 239 239
+   :source-code: base/bif/zeek.bif.zeek 241 241
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -3193,6 +3201,7 @@ Functions
    .. zeek:see:: md5_hash md5_hmac md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash_init sha512_hash_update sha512_hash_finish
    
    .. note::
    
@@ -3201,7 +3210,7 @@ Functions
         friends.
 
 .. zeek:id:: sha1_hash_finish
-   :source-code: base/bif/zeek.bif.zeek 402 402
+   :source-code: base/bif/zeek.bif.zeek 467 467
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of sha1) : :zeek:type:`string`
 
@@ -3216,9 +3225,10 @@ Functions
    .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash sha512_hash_update sha512_hash_finish
 
 .. zeek:id:: sha1_hash_init
-   :source-code: base/bif/zeek.bif.zeek 309 309
+   :source-code: base/bif/zeek.bif.zeek 330 330
 
    :Type: :zeek:type:`function` () : :zeek:type:`opaque` of sha1
 
@@ -3243,7 +3253,7 @@ Functions
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
 
 .. zeek:id:: sha1_hash_update
-   :source-code: base/bif/zeek.bif.zeek 362 362
+   :source-code: base/bif/zeek.bif.zeek 407 407
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of sha1, data: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -3263,9 +3273,10 @@ Functions
    .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash sha512_hash_update sha512_hash_finish
 
 .. zeek:id:: sha256_hash
-   :source-code: base/bif/zeek.bif.zeek 255 255
+   :source-code: base/bif/zeek.bif.zeek 258 258
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`string`
 
@@ -3277,6 +3288,7 @@ Functions
    .. zeek:see:: md5_hash md5_hmac md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash_init sha512_hash_update sha512_hash_finish
    
    .. note::
    
@@ -3285,7 +3297,7 @@ Functions
         friends.
 
 .. zeek:id:: sha256_hash_finish
-   :source-code: base/bif/zeek.bif.zeek 414 414
+   :source-code: base/bif/zeek.bif.zeek 480 480
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of sha256) : :zeek:type:`string`
 
@@ -3300,9 +3312,10 @@ Functions
    .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_update
+      sha512_hash sha512_hash_update sha512_hash_finish
 
 .. zeek:id:: sha256_hash_init
-   :source-code: base/bif/zeek.bif.zeek 330 330
+   :source-code: base/bif/zeek.bif.zeek 351 351
 
    :Type: :zeek:type:`function` () : :zeek:type:`opaque` of sha256
 
@@ -3327,7 +3340,7 @@ Functions
       sha256_hash sha256_hash_update sha256_hash_finish
 
 .. zeek:id:: sha256_hash_update
-   :source-code: base/bif/zeek.bif.zeek 378 378
+   :source-code: base/bif/zeek.bif.zeek 424 424
 
    :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of sha256, data: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -3347,9 +3360,98 @@ Functions
    .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
       sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
       sha256_hash sha256_hash_init sha256_hash_finish
+      sha512_hash sha512_hash_update sha512_hash_finish
+
+.. zeek:id:: sha512_hash
+   :source-code: base/bif/zeek.bif.zeek 275 275
+
+   :Type: :zeek:type:`function` (...) : :zeek:type:`string`
+
+   Computes the SHA512 hash value of the provided list of arguments.
+   
+
+   :returns: The SHA512 hash value of the concatenated arguments.
+   
+   .. zeek:see:: md5_hash md5_hmac md5_hash_init md5_hash_update md5_hash_finish
+      sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
+      sha256_hash_init sha256_hash_update sha256_hash_finish
+      sha512_hash_init sha512_hash_update sha512_hash_finish
+   
+   .. note::
+   
+        This function performs a one-shot computation of its arguments.
+        For incremental hash computation, see :zeek:id:`sha512_hash_init` and
+        friends.
+
+.. zeek:id:: sha512_hash_finish
+   :source-code: base/bif/zeek.bif.zeek 493 493
+
+   :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of sha512) : :zeek:type:`string`
+
+   Returns the final SHA512 digest of an incremental hash computation.
+   
+
+   :param handle: The opaque handle associated with this hash computation.
+   
+
+   :returns: The hash value associated with the computation of *handle*.
+   
+   .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
+      sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
+      sha256_hash sha256_hash_init sha256_hash_update
+      sha512_hash sha512_hash_init sha512_hash_update
+
+.. zeek:id:: sha512_hash_init
+   :source-code: base/bif/zeek.bif.zeek 373 373
+
+   :Type: :zeek:type:`function` () : :zeek:type:`opaque` of sha512
+
+   Constructs an SHA512 handle to enable incremental hash computation. You can
+   feed data to the returned opaque value with :zeek:id:`sha512_hash_update` and
+   finally need to call :zeek:id:`sha512_hash_finish` to finish the computation
+   and get the hash digest.
+   
+   For example, when computing incremental SHA512 values of transferred files in
+   multiple concurrent HTTP connections, one keeps an optional handle in the
+   HTTP session record. Then, one would call
+   ``c$http$sha512_handle = sha512_hash_init()`` once before invoking
+   ``sha512_hash_update(c$http$sha512_handle, some_more_data)`` in the
+   :zeek:id:`http_entity_data` event handler. When all data has arrived, a call
+   to :zeek:id:`sha512_hash_finish` returns the final hash value.
+   
+
+   :returns: The opaque handle associated with this hash computation.
+   
+   .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
+      sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
+      sha256_hash sha256_hash_init sha256_hash_update
+      sha512_hash sha512_hash_update sha512_hash_finish
+
+.. zeek:id:: sha512_hash_update
+   :source-code: base/bif/zeek.bif.zeek 441 441
+
+   :Type: :zeek:type:`function` (handle: :zeek:type:`opaque` of sha512, data: :zeek:type:`string`) : :zeek:type:`bool`
+
+   Updates the SHA512 value associated with a given index. It is required to
+   call :zeek:id:`sha512_hash_init` once before calling this
+   function.
+   
+
+   :param handle: The opaque handle associated with this hash computation.
+   
+
+   :param data: The data to add to the hash computation.
+   
+
+   :returns: True on success.
+   
+   .. zeek:see:: md5_hmac md5_hash md5_hash_init md5_hash_update md5_hash_finish
+      sha1_hash sha1_hash_init sha1_hash_update sha1_hash_finish
+      sha256_hash sha256_hash_init sha256_hash_update
+      sha512_hash sha512_hash_init sha512_hash_finish
 
 .. zeek:id:: skip_further_processing
-   :source-code: base/bif/zeek.bif.zeek 2076 2076
+   :source-code: base/bif/zeek.bif.zeek 2155 2155
 
    :Type: :zeek:type:`function` (cid: :zeek:type:`conn_id`) : :zeek:type:`bool`
 
@@ -3391,7 +3493,7 @@ Functions
         :zeek:see:`schedule` an event, or consider :zeek:id:`Exec::run`.
 
 .. zeek:id:: sort
-   :source-code: base/bif/zeek.bif.zeek 775 775
+   :source-code: base/bif/zeek.bif.zeek 854 854
 
    :Type: :zeek:type:`function` (...) : :zeek:type:`any`
 
@@ -3412,7 +3514,7 @@ Functions
    .. zeek:see:: order
 
 .. zeek:id:: sqrt
-   :source-code: base/bif/zeek.bif.zeek 910 910
+   :source-code: base/bif/zeek.bif.zeek 989 989
 
    :Type: :zeek:type:`function` (x: :zeek:type:`double`) : :zeek:type:`double`
 
@@ -3427,7 +3529,7 @@ Functions
    .. zeek:see:: floor ceil exp ln log2 log10 pow
 
 .. zeek:id:: srand
-   :source-code: base/bif/zeek.bif.zeek 514 514
+   :source-code: base/bif/zeek.bif.zeek 593 593
 
    :Type: :zeek:type:`function` (seed: :zeek:type:`count`) : :zeek:type:`any`
 
@@ -3444,7 +3546,7 @@ Functions
         provided by the OS.
 
 .. zeek:id:: strftime
-   :source-code: base/bif/zeek.bif.zeek 1710 1710
+   :source-code: base/bif/zeek.bif.zeek 1789 1789
 
    :Type: :zeek:type:`function` (fmt: :zeek:type:`string`, d: :zeek:type:`time`) : :zeek:type:`string`
 
@@ -3460,7 +3562,7 @@ Functions
    :returns: The time *d* formatted according to *fmt*.
 
 .. zeek:id:: string_to_pattern
-   :source-code: base/bif/zeek.bif.zeek 1700 1700
+   :source-code: base/bif/zeek.bif.zeek 1779 1779
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`, convert: :zeek:type:`bool`) : :zeek:type:`pattern`
 
@@ -3480,7 +3582,7 @@ Functions
    .. zeek:see:: convert_for_pattern
 
 .. zeek:id:: strptime
-   :source-code: base/bif/zeek.bif.zeek 1722 1722
+   :source-code: base/bif/zeek.bif.zeek 1801 1801
 
    :Type: :zeek:type:`function` (fmt: :zeek:type:`string`, d: :zeek:type:`string`) : :zeek:type:`time`
 
@@ -3497,7 +3599,7 @@ Functions
    :returns: The time value calculated from parsing *d* with *fmt*.
 
 .. zeek:id:: subnet_to_addr
-   :source-code: base/bif/zeek.bif.zeek 1466 1466
+   :source-code: base/bif/zeek.bif.zeek 1545 1545
 
    :Type: :zeek:type:`function` (sn: :zeek:type:`subnet`) : :zeek:type:`addr`
 
@@ -3513,7 +3615,7 @@ Functions
    .. zeek:see:: to_subnet
 
 .. zeek:id:: subnet_width
-   :source-code: base/bif/zeek.bif.zeek 1476 1476
+   :source-code: base/bif/zeek.bif.zeek 1555 1555
 
    :Type: :zeek:type:`function` (sn: :zeek:type:`subnet`) : :zeek:type:`count`
 
@@ -3528,7 +3630,7 @@ Functions
    .. zeek:see:: to_subnet
 
 .. zeek:id:: suspend_processing
-   :source-code: base/bif/zeek.bif.zeek 2525 2525
+   :source-code: base/bif/zeek.bif.zeek 2604 2604
 
    :Type: :zeek:type:`function` () : :zeek:type:`any`
 
@@ -3540,7 +3642,7 @@ Functions
                  is_processing_suspended
 
 .. zeek:id:: syslog
-   :source-code: base/bif/zeek.bif.zeek 522 522
+   :source-code: base/bif/zeek.bif.zeek 601 601
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`any`
 
@@ -3597,7 +3699,7 @@ Functions
    .. zeek:see:: system safe_shell_quote piped_exec
 
 .. zeek:id:: table_keys
-   :source-code: base/bif/zeek.bif.zeek 678 678
+   :source-code: base/bif/zeek.bif.zeek 757 757
 
    :Type: :zeek:type:`function` (t: :zeek:type:`any`) : :zeek:type:`any`
 
@@ -3612,7 +3714,7 @@ Functions
    .. zeek:see:: table_values
 
 .. zeek:id:: table_pattern_matcher_stats
-   :source-code: base/bif/zeek.bif.zeek 2812 2812
+   :source-code: base/bif/zeek.bif.zeek 2891 2891
 
    :Type: :zeek:type:`function` (tbl: :zeek:type:`any`) : :zeek:type:`MatcherStats`
 
@@ -3633,7 +3735,7 @@ Functions
    :returns: A record with matcher statistics.
 
 .. zeek:id:: table_values
-   :source-code: base/bif/zeek.bif.zeek 668 668
+   :source-code: base/bif/zeek.bif.zeek 747 747
 
    :Type: :zeek:type:`function` (t: :zeek:type:`any`) : :zeek:type:`any_vec`
 
@@ -3661,7 +3763,7 @@ Functions
    .. zeek:see:: exit zeek_is_terminating
 
 .. zeek:id:: time_to_double
-   :source-code: base/bif/zeek.bif.zeek 1363 1363
+   :source-code: base/bif/zeek.bif.zeek 1442 1442
 
    :Type: :zeek:type:`function` (t: :zeek:type:`time`) : :zeek:type:`double`
 
@@ -3676,7 +3778,7 @@ Functions
    .. zeek:see:: double_to_time
 
 .. zeek:id:: to_addr
-   :source-code: base/bif/zeek.bif.zeek 1417 1417
+   :source-code: base/bif/zeek.bif.zeek 1496 1496
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`string`) : :zeek:type:`addr`
 
@@ -3693,7 +3795,7 @@ Functions
       to_subnet
 
 .. zeek:id:: to_count
-   :source-code: base/bif/zeek.bif.zeek 1323 1323
+   :source-code: base/bif/zeek.bif.zeek 1402 1402
 
    :Type: :zeek:type:`function` (str: :zeek:type:`string`, base: :zeek:type:`count` :zeek:attr:`&default` = ``10`` :zeek:attr:`&optional`) : :zeek:type:`count`
 
@@ -3713,7 +3815,7 @@ Functions
    .. zeek:see:: to_addr to_int to_port to_subnet
 
 .. zeek:id:: to_double
-   :source-code: base/bif/zeek.bif.zeek 1486 1486
+   :source-code: base/bif/zeek.bif.zeek 1565 1565
 
    :Type: :zeek:type:`function` (str: :zeek:type:`string`) : :zeek:type:`double`
 
@@ -3728,7 +3830,7 @@ Functions
    
 
 .. zeek:id:: to_int
-   :source-code: base/bif/zeek.bif.zeek 1279 1279
+   :source-code: base/bif/zeek.bif.zeek 1358 1358
 
    :Type: :zeek:type:`function` (str: :zeek:type:`string`, base: :zeek:type:`count` :zeek:attr:`&default` = ``10`` :zeek:attr:`&optional`) : :zeek:type:`int`
 
@@ -3747,7 +3849,7 @@ Functions
    .. zeek:see:: to_addr to_port to_subnet
 
 .. zeek:id:: to_json
-   :source-code: base/bif/zeek.bif.zeek 2652 2652
+   :source-code: base/bif/zeek.bif.zeek 2731 2731
 
    :Type: :zeek:type:`function` (val: :zeek:type:`any`, only_loggable: :zeek:type:`bool` :zeek:attr:`&default` = ``F`` :zeek:attr:`&optional`, field_escape_pattern: :zeek:type:`pattern` :zeek:attr:`&default` = ``/^?(^_)$?/`` :zeek:attr:`&optional`, interval_as_double: :zeek:type:`bool` :zeek:attr:`&default` = ``F`` :zeek:attr:`&optional`) : :zeek:type:`string`
 
@@ -3777,7 +3879,7 @@ Functions
    .. zeek:see:: fmt cat cat_sep string_cat print_raw from_json
 
 .. zeek:id:: to_port
-   :source-code: base/bif/zeek.bif.zeek 1530 1530
+   :source-code: base/bif/zeek.bif.zeek 1609 1609
 
    :Type: :zeek:type:`function` (s: :zeek:type:`string`) : :zeek:type:`port`
 
@@ -3792,7 +3894,7 @@ Functions
    .. zeek:see:: to_addr to_count to_int to_subnet
 
 .. zeek:id:: to_subnet
-   :source-code: base/bif/zeek.bif.zeek 1445 1445
+   :source-code: base/bif/zeek.bif.zeek 1524 1524
 
    :Type: :zeek:type:`function` (sn: :zeek:type:`string`) : :zeek:type:`subnet`
 
@@ -3809,7 +3911,7 @@ Functions
       to_addr
 
 .. zeek:id:: type_aliases
-   :source-code: base/bif/zeek.bif.zeek 1026 1026
+   :source-code: base/bif/zeek.bif.zeek 1105 1105
 
    :Type: :zeek:type:`function` (x: :zeek:type:`any`) : :zeek:type:`string_set`
 
@@ -3833,7 +3935,7 @@ Functions
             or initializer for that compound type).
 
 .. zeek:id:: type_name
-   :source-code: base/bif/zeek.bif.zeek 1005 1005
+   :source-code: base/bif/zeek.bif.zeek 1084 1084
 
    :Type: :zeek:type:`function` (t: :zeek:type:`any`) : :zeek:type:`string`
 
@@ -3846,7 +3948,7 @@ Functions
    :returns: The type name of *t*.
 
 .. zeek:id:: uninstall_dst_addr_filter
-   :source-code: base/bif/zeek.bif.zeek 2491 2491
+   :source-code: base/bif/zeek.bif.zeek 2570 2570
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`addr`) : :zeek:type:`bool`
 
@@ -3870,7 +3972,7 @@ Functions
                 Pcap::error
 
 .. zeek:id:: uninstall_dst_net_filter
-   :source-code: base/bif/zeek.bif.zeek 2510 2510
+   :source-code: base/bif/zeek.bif.zeek 2589 2589
 
    :Type: :zeek:type:`function` (snet: :zeek:type:`subnet`) : :zeek:type:`bool`
 
@@ -3894,7 +3996,7 @@ Functions
                 Pcap::error
 
 .. zeek:id:: uninstall_src_addr_filter
-   :source-code: base/bif/zeek.bif.zeek 2396 2396
+   :source-code: base/bif/zeek.bif.zeek 2475 2475
 
    :Type: :zeek:type:`function` (ip: :zeek:type:`addr`) : :zeek:type:`bool`
 
@@ -3918,7 +4020,7 @@ Functions
                 Pcap::error
 
 .. zeek:id:: uninstall_src_net_filter
-   :source-code: base/bif/zeek.bif.zeek 2415 2415
+   :source-code: base/bif/zeek.bif.zeek 2494 2494
 
    :Type: :zeek:type:`function` (snet: :zeek:type:`subnet`) : :zeek:type:`bool`
 
@@ -3942,7 +4044,7 @@ Functions
                 Pcap::error
 
 .. zeek:id:: unique_id
-   :source-code: base/bif/zeek.bif.zeek 634 634
+   :source-code: base/bif/zeek.bif.zeek 713 713
 
    :Type: :zeek:type:`function` (prefix: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -3957,7 +4059,7 @@ Functions
    .. zeek:see:: unique_id_from
 
 .. zeek:id:: unique_id_from
-   :source-code: base/bif/zeek.bif.zeek 646 646
+   :source-code: base/bif/zeek.bif.zeek 725 725
 
    :Type: :zeek:type:`function` (pool: :zeek:type:`int`, prefix: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -3975,7 +4077,7 @@ Functions
    .. zeek:see:: unique_id
 
 .. zeek:id:: unlink
-   :source-code: base/bif/zeek.bif.zeek 2233 2233
+   :source-code: base/bif/zeek.bif.zeek 2312 2312
 
    :Type: :zeek:type:`function` (f: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -3993,7 +4095,7 @@ Functions
                 mkdir rmdir rename
 
 .. zeek:id:: uuid_to_string
-   :source-code: base/bif/zeek.bif.zeek 1670 1670
+   :source-code: base/bif/zeek.bif.zeek 1749 1749
 
    :Type: :zeek:type:`function` (uuid: :zeek:type:`string`) : :zeek:type:`string`
 
@@ -4009,7 +4111,7 @@ Functions
    :returns: The string representation of *uuid*.
 
 .. zeek:id:: val_footprint
-   :source-code: base/bif/zeek.bif.zeek 1087 1087
+   :source-code: base/bif/zeek.bif.zeek 1166 1166
 
    :Type: :zeek:type:`function` (v: :zeek:type:`any`) : :zeek:type:`count`
 
@@ -4023,7 +4125,7 @@ Functions
    .. zeek:see:: global_container_footprints
 
 .. zeek:id:: write_file
-   :source-code: base/bif/zeek.bif.zeek 2168 2168
+   :source-code: base/bif/zeek.bif.zeek 2247 2247
 
    :Type: :zeek:type:`function` (f: :zeek:type:`file`, data: :zeek:type:`string`) : :zeek:type:`bool`
 
@@ -4043,7 +4145,7 @@ Functions
                 rmdir unlink rename
 
 .. zeek:id:: zeek_args
-   :source-code: base/bif/zeek.bif.zeek 1039 1039
+   :source-code: base/bif/zeek.bif.zeek 1118 1118
 
    :Type: :zeek:type:`function` () : :zeek:type:`string_vec`
 
@@ -4051,7 +4153,7 @@ Functions
    :returns: list of command-line arguments (``argv``) used to run Zeek.
 
 .. zeek:id:: zeek_is_terminating
-   :source-code: base/bif/zeek.bif.zeek 1172 1172
+   :source-code: base/bif/zeek.bif.zeek 1251 1251
 
    :Type: :zeek:type:`function` () : :zeek:type:`bool`
 
@@ -4063,7 +4165,7 @@ Functions
    .. zeek:see:: terminate
 
 .. zeek:id:: zeek_version
-   :source-code: base/bif/zeek.bif.zeek 989 989
+   :source-code: base/bif/zeek.bif.zeek 1068 1068
 
    :Type: :zeek:type:`function` () : :zeek:type:`string`
 
