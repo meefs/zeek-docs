@@ -4,6 +4,11 @@
 .. _Sphinx: https://www.sphinx-doc.org/en/master
 .. _pip: https://pypi.org/project/pip
 
+NOTE: The Zeek documentation has been merged into the `Zeek repo`_ directly and is
+no longer kept as a separate repository. This is also the case for the 7.0 and
+8.0 release cycles. Please open any new issues or pull requests against the
+documentation in that repository.
+
 Zeek Documentation
 ==================
 
